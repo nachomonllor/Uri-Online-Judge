@@ -1,0 +1,17 @@
+﻿t = int(raw_input())
+
+for k in range(0,t):
+    x = int(raw_input())
+    
+    if x <= 13:
+        print "0 kg"
+    else:
+        lista = []
+        lista.append(1)
+        for i in range(1,x+1):
+            lista.append(lista[i-1] * 2)
+        
+        '''for i in range(1, x+1):
+            print str(lista[i]) + " " '''
+
+        print str(lista[ len(lista)  - 1] / 12 / 1000) + " kg"
