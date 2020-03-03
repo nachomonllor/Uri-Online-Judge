@@ -1,0 +1,43 @@
+#include<iostream>
+#include<stdio.h>
+#include <math.h>
+#include <stdio.h>
+
+int main ()
+{
+	int N;
+	scanf("%d", &N);
+	
+	for(int i = 0; i < N; i++) {
+		
+		int X;
+		scanf("%d", &X);
+		
+		if(X < 2) {
+			printf("%d nao eh primo\n", X);
+		}
+		else if(X == 2) {
+			printf("%d eh primo\n", X);
+		}
+		else if(X % 2 == 0) {
+			printf("%d nao eh primo\n", X);
+		} else {
+			bool es= true;
+			int sqr = sqrt(X);
+			for(int i = 3; i <= sqr; i+=2){
+				if(X % i == 0) {
+					es=false;
+					break;
+				}
+			}
+			if(es) {
+				printf("%d eh primo\n", X);
+			}else{
+				printf("%d nao eh primo\n", X);
+			}
+		}
+	}
+
+
+    return 0;
+}

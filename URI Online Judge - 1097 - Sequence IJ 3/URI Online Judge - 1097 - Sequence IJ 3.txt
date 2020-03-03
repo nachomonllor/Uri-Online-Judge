@@ -1,0 +1,22 @@
+#include <iostream>
+#include <stdio.h>
+#include <algorithm>
+#include <vector>
+#include <string.h>
+#include <limits>
+
+using namespace std;
+
+int main(){
+	
+	int ini=7;
+	for(int i = 1; i <= 9; i+=2) {
+		for(int j = ini; j >= ini-2; j--){
+			printf("I=%d J=%d\n",i,j);
+		}
+		ini+=2;
+	}
+	
+
+	return 0;
+}

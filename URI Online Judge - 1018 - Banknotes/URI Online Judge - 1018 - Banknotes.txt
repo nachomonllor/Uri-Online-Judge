@@ -1,0 +1,27 @@
+#include <iostream>
+#include <stdio.h>
+
+int main() {
+	
+	int N;
+	scanf("%d", &N);
+	
+	printf("%d\n", N);
+	
+	int billetes[] = {100, 50, 20,  10, 5, 2,   1};
+	int len = 7;
+	int sum = 0, i = 0;
+
+	while(i < len ) {
+	    
+	    int cont = 0;
+	    while(sum + billetes[i] <= N) {
+	    	sum += billetes[i];
+	    	cont++;
+	    }
+	    printf("%d nota(s) de R$ %d,00\n", cont, billetes[i]);
+		i++;
+	}
+	
+	return 0;
+}

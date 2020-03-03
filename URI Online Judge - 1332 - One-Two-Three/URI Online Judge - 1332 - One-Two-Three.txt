@@ -1,0 +1,40 @@
+#include <string>
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
+
+int comparar(string pal)
+{
+    if (pal.length() == 5)
+    {
+        return 3;
+    }
+    int cont = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        if (pal[i] != "one"[i])
+        {
+            cont++;
+        }
+    }
+    
+    if (cont <= 1) return 1;
+ 
+    return 2;
+}
+
+int main() {
+	
+	int N;
+	scanf("%d", &N);
+	
+	for(int i = 0; i < N; i++) {
+		char cad[10];
+		scanf("%s", cad);
+		int numero = comparar(cad);
+		printf("%d\n", numero);
+	}
+	
+	return 0;
+}

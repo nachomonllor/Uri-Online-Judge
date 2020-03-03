@@ -1,0 +1,67 @@
+#include <iostream>
+#include <stdio.h>
+
+/*
+void mostrar(int nums[]){
+	
+	for(int i = 0; i < 5; i++){
+		printf(")
+	}
+}*/
+
+int main() {
+
+	int par[5];
+	int impar[5];
+	int iPar = 0, iImpar = 0;
+	
+	for(int i = 0; i < 15; i++) {
+		int n;
+		scanf("%d", &n);
+		
+		if(n % 2 == 0) {
+			par[iPar] = n;
+			iPar++;
+			
+			//muestro array de par
+			if(iPar == 5){ /* si llega al tope, lo muestro*/	
+				for(int j = 0; j < 5; j++){
+					printf("par[%d] = %d\n", j, par[j]);
+				}
+				iPar = 0;
+			}
+			
+		}else{
+			impar[iImpar] = n;
+			iImpar++;
+			
+			if(iImpar == 5) { /* si llega al tope, lo muestro */
+			//muestro array impares
+				for(int j =0; j < 5; j++){
+					printf("impar[%d] = %d\n", j, impar[j]);
+				}
+				iImpar = 0;
+			}
+			
+		}		
+	}
+	
+	if(iImpar < 5) {
+		
+		/*muestro el array hasta donde llego el indice iImpar, porque si lo muestro todo 
+		estaria mostrando lo que se cargo en la tanda anterior, iImpar es tambien el tamaño
+		de hasta donde se cargo en la ultima tando*/
+		for(int j = 0; j < iImpar; j++){
+			printf("impar[%d] = %d\n", j, impar[j]);
+		}
+	}
+		
+	if(iPar < 5 ) {
+		/* hago el mismo procedimiento con el array de pares*/
+		for(int j = 0; j < iPar; j++){
+			printf("par[%d] = %d\n", j, par[j]);
+		}
+	}
+	
+	return 0;
+}

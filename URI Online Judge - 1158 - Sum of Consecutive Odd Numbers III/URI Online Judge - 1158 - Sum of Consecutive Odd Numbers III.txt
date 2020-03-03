@@ -1,0 +1,29 @@
+#include<iostream>
+#include<stdio.h>
+#include <map>
+#include <stdio.h>
+
+int main ()
+{
+	
+	int N;
+	scanf("%d",&N);
+	
+	
+	for(int i = 0; i < N; i++) {
+		int X, Y;
+		scanf("%d %d", &X, &Y);
+		
+		if( X % 2 == 0) {
+			X ++;
+		}
+		int cont = 0, sum = 0;
+		for(int j = X; cont < Y  ; j+=2) {
+			sum += j;
+			cont ++;
+		}
+		printf("%d\n", sum);
+	}
+
+    return 0;
+}

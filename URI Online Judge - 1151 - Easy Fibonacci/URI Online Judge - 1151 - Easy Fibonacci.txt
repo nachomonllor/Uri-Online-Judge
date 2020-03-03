@@ -1,0 +1,28 @@
+#include<iostream>
+#include<stdio.h>
+#include <map>
+#include <stdio.h>
+
+int main ()
+{
+	
+	int N;
+	scanf("%d", &N);
+
+	int a = 0, b = 1, c = 0, i;
+	if( N == 0) {
+	
+		return a;
+	}
+    
+	for (i = 0; i < N - 1; i++)
+	{
+		 printf("%d ", c);
+		 a = b;
+		 b = c; 
+		 c = a + b;
+	}
+	printf("%d\n", c);
+	
+    return 0;
+}

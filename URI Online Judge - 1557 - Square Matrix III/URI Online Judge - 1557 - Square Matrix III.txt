@@ -1,0 +1,101 @@
+﻿/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+ 
+
+import java.util.*;
+
+/**
+ *
+ * @author Administrador
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+      
+        
+        
+        Scanner teclado = new Scanner(System.in);
+        
+        while(true) {
+            int N;
+            //scanf("%d", &N);
+            N = teclado.nextInt();
+            if(N == 0) {
+                break;
+            }
+            
+            int dp[][] = new int[N][N];
+            int num = 1;
+            
+            /* cargo la matriz con los valores correspondientes 
+             usando programacion dinamica*/
+            /*cargo la primer fila*/
+            for (int i = 0; i < N; i++)
+            {
+                dp[0][i] = num;
+                num *= 2;
+            }
+            /*cargo la primer columna (la mas a la izquierda)*/
+            num = 2;
+            for (int i = 1; i < N; i++)
+            {
+                dp[i][0] = num;
+                num *= 2;
+            }
+
+            int i, j, k;
+            
+            for ( i = 1; i < N; i++)
+            {
+                for ( j = 1; j < N; j++)
+                {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+            }
+            
+            /* en el ultimo lugar, (abajo-derecha) esta el numero mas grande.
+             por lo tanto lo convierto a string para tomar la cantidad de digitos
+             y hallar T */
+             
+            int T =  String.valueOf(dp[N-1][N-1]).length();
+
+                //muestro la matriz
+            for ( i = 0; i < N; i++)
+            {
+                for ( j = 0; j < N - 1; j++)
+                {
+                    /* imprimo espacios alineando a la derecha.
+                     A "T", que es la cant de digitos del numero mas grande
+                     le resto la cantidad de digitos del numero actual
+                     para hallar la cantidad de espacios restantes */
+                    
+                    for ( k = 0; k < T - String.valueOf(dp[i][j]).length(); k++)
+                    {
+                        System.out.print(" ");
+                    }
+                    //printf("%d ", dp[i][j]);
+                    System.out.print(dp[i][j] + " ");
+                }
+                for ( k = 0; k < T - String.valueOf(dp[i][j]).length(); k++)
+                {
+                    System.out.print(" ");
+                }
+                /* imprimo el ultimo elemento de la fila 
+                 sin el espacio al final*/
+                System.out.print(dp[i][j] + "\n");
+
+            }
+            System.out.println();
+        
+        }
+        
+    }
+    
+}
+

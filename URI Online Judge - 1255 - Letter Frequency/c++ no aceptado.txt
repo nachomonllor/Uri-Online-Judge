@@ -1,0 +1,131 @@
+/* Program to insert in a sorted list */
+#include<stdio.h>
+#include<stdlib.h>
+#include <iostream>
+#include <map>
+
+using namespace std;
+ 
+/* Link list node */
+struct node
+{
+    char data;
+    struct node* next;
+};
+ 
+/* function to insert a new_node in a list. Note that this
+  function expects a pointer to head_ref as this can modify the
+  head of the input linked list (similar to push())*/
+void sortedInsert(struct node** head_ref, struct node* new_node)
+{
+    struct node* current;
+    /* Special case for the head end */
+    if (*head_ref == NULL || (*head_ref)->data >= new_node->data)
+    {
+        new_node->next = *head_ref;
+        *head_ref = new_node;
+    }
+    else
+    {
+        /* Locate the node before the point of insertion */
+        current = *head_ref;
+        while (current->next!=NULL &&
+               current->next->data < new_node->data)
+        {
+            current = current->next;
+        }
+        new_node->next = current->next;
+        current->next = new_node;
+    }
+}
+ 
+/* BELOW FUNCTIONS ARE JUST UTILITY TO TEST sortedInsert */
+ 
+/* A utility function to create a new node */
+struct node *newNode(char new_data)
+{
+    /* allocate node */
+    struct node* new_node =
+        (struct node*) malloc(sizeof(struct node));
+ 
+    /* put in the data  */
+    new_node->data  = new_data;
+    new_node->next =  NULL;
+ 
+    return new_node;
+}
+
+
+bool esLetra(char c){
+	if(c >= 'a' && c <= 'z'){
+		return true;
+	}
+	return false;
+}
+ 
+void contar(std::string text)
+{
+    /* creao un HashMap con key = caracter, y value = frecuencia preente de ese caracter */
+    std::map<char, int> histo;
+    
+    int masFrecuente = 0;
+    /* recorro el texto para contar las veces que esta cada caracter 
+      y mientras tanto busco el numero de veces maximo */
+    
+    for (int i = 0; i < text.length(); i++)
+    {
+        char key = std::tolower(text[i]);
+
+        if(esLetra(key)) //if (Character.isLetter(key))
+        {
+            if (histo.count(key)) {
+                histo[key] ++;
+            }
+            else {
+                 histo[key] = 1;
+            }
+            
+            /* busco el maximo value, que es las veces maxima que esta presente algun caracter 
+             * sin embargo no necesito conocer ese caracter, solo las veces que esta*/
+            masFrecuente = std::max(masFrecuente, histo[key]);
+        }
+    }
+
+    
+    /*declaro un LinkedList,
+     * sabiendo cuantas veces esta el caracter que esta mas veces
+     * busco a todos los caracteres que estan esa cantidad de veces (la maxima)
+     */
+     struct node* head = NULL;
+	 for(std::map<char, int>::iterator it = histo.begin(); it != histo.end(); it ++) {
+	 	char key = it->first;
+		if(histo[key] == masFrecuente) {
+			struct node * nuevo = newNode(key);
+			sortedInsert(&head, nuevo );
+		}
+	 }
+
+    /*Muestro el LinkedList:
+    al estar en el linkedList odenados alfabeticamente 
+    ya puedo recorrer el linkedList y mostrarlo */
+    for(struct node * ptr = head; ptr != NULL; ptr = ptr->next) {
+    	printf("%c", ptr->data);
+    }
+}
+
+
+int main() {
+	
+	int N;
+	scanf("%d", &N);
+	string linea;
+	for(int i = 0; i < N; i++) {
+		fflush(stdin);
+		std::getline(std::cin, linea);
+		contar(linea);
+		printf("\n");
+	} 
+	
+	
+	return 0;
+}

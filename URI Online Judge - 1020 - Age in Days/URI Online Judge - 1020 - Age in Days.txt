@@ -1,0 +1,21 @@
+#include <iostream>
+#include <stdio.h>
+
+int main() {
+	
+	int N;
+	scanf("%d", &N);
+	
+	int an = N / 365;
+	
+	int meses = (N % 365) / 30;
+	
+	int dias = (N % 365) % 30;
+	
+	printf("%d ano(s)\n", an);
+	printf("%d mes(es)\n", meses);
+	printf("%d dia(s)\n", dias);
+	
+
+	return 0;
+}

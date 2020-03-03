@@ -1,0 +1,139 @@
+import java.io.IOException;
+import java.util.*;
+import java.io.*;
+
+/**
+ * IMPORTANT: 
+ *      O nome da classe deve ser "Main" para que a sua solução execute
+ *      Class name must be "Main" for your solution to execute
+ *      El nombre de la clase debe ser "Main" para que su solución ejecutar
+ */
+class Nodo
+{
+    char data;
+    Nodo next;
+
+    public Nodo() { }
+    public Nodo(char c)
+    {
+        this.data = c;
+    }
+}
+
+public class Main {
+ 
+    
+    /* para poner cada nodo (que contiene un caracter) de forma ordenada alfabeticamente */
+     static Nodo sortedInsert( Nodo head_ref, Nodo new_node)
+        {
+            Nodo current;
+            /* Special case for the head end */
+            if (head_ref == null || (head_ref).data >= new_node.data)
+            {
+                new_node.next = head_ref;
+                head_ref = new_node;
+            }
+            else
+            {
+                /* Locate the node before the point of insertion */
+                current = head_ref;
+                while (current.next != null &&
+                       current.next.data < new_node.data)
+                {
+                    current = current.next;
+                }
+                new_node.next = current.next;
+                current.next = new_node;
+            }
+            
+            return head_ref;
+        }
+
+        /* A utility function to create a new node */
+        static Nodo newNode(char new_data)
+        {
+            /* allocate node */
+            Nodo new_node = new Nodo();
+
+
+            /* put in the data  */
+            new_node.data = new_data;
+            new_node.next = null;
+
+            return new_node;
+        }
+    
+        public static void contar(String text)
+        {
+            /* creao un HashMap con key = caracter, y value = frecuencia preente de ese caracter */
+            HashMap<Character, Integer> histo = new HashMap();
+            
+
+            int masFrecuente = 0;
+            //char charMax = text.charAt(0);
+
+            /* recorro el texto para contar las veces que esta cada caracter 
+              y mientras tanto busco el numero de veces maximo */
+            
+            for (int i = 0; i < text.length(); i++)
+            {
+                char key = Character.toLowerCase(text.charAt(i) );
+
+                if (Character.isLetter(key))
+                {
+                    if (histo.containsKey(key))
+                    {
+                        //histo[key]++;
+                        histo.put(key, histo.get(key) + 1);
+                    }
+                    else
+                    {
+                         histo.put(key, 1);
+                    }
+                    
+                    /* busco el maximo value, que es las veces maxima que esta presente algun caracter 
+                     * sin embargo no necesito conocer ese caracter, solo las veces que esta*/
+                     
+                    masFrecuente = Math.max(masFrecuente, histo.get(key));
+                }
+            }
+
+            
+            /*declaro un LinkedList,
+             * sabiendo cuantas veces esta el caracter que esta mas veces
+             * busco a todos los caracteres que estan esa cantidad de veces (la maxima)
+             */
+            Nodo head = null;
+            for(char key : histo.keySet()){
+                if(histo.get(key) == masFrecuente){
+                    head = sortedInsert(head, new Nodo(key));
+                }
+            }
+            
+            /*Muestro el LinkedList:
+            al estar en el linkedList odenados alfabeticamente 
+            ya puedo recorrer el linkedList y mostrarlo */
+            for(Nodo ptr = head; ptr != null; ptr = ptr.next){
+                System.out.print(ptr.data);
+            }
+        }
+
+
+    public static void main(String[] args) throws IOException {
+ 
+       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt( br.readLine());
+          
+        for(int i = 0; i < N; i++) {
+            String linea;
+            linea = br.readLine();
+            contar(linea);
+            System.out.print("\n");
+        }
+            
+       
+ 
+    }
+ 
+}

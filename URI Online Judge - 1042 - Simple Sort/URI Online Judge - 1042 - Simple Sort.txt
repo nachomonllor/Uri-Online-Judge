@@ -1,0 +1,56 @@
+#include <iostream>
+#include <stdio.h>
+
+int main() {
+	
+
+	int a, b, c;
+	
+	scanf("%d %d %d", &a, &b, &c);
+	
+	int menor, medio, mayor;
+	
+	if(a > b && a > c ) {
+		mayor = a;
+		if(b > c) {
+			medio = b;
+			menor = c;
+		}else {
+			medio = c;
+			menor = b;
+		}
+	}else {
+		if(b > c) {
+			mayor = b;
+			if(a > c) {
+				medio = a;
+				menor = c;
+			}else{
+				medio = c;
+				menor = a;
+			}
+			
+		}else {
+			mayor = c;
+			if(a > b){
+				medio = a;
+				menor = b;
+			} else {
+				medio = b;
+				menor = a;
+			}
+		}
+		
+	}	
+		
+	printf("%d\n", menor);
+	printf("%d\n", medio);
+	printf("%d\n", mayor);
+	
+	printf("\n");
+	printf("%d\n", a);
+	printf("%d\n", b);
+	printf("%d\n", c);
+		
+	return 0;
+}

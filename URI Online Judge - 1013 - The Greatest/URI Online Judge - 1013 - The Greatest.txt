@@ -1,0 +1,20 @@
+#include <iostream>
+#include <stdio.h> 
+#include <math.h>
+ 
+using namespace std;
+ 
+int main() {
+ 	
+	int A, B, C;
+	
+	scanf("%d %d %d", &A, &B, &C);
+	
+	int mayorAB = (A + B + abs(A - B))/2;
+	
+	int mayor = (mayorAB + C + abs(mayorAB - C))/2;
+	
+	printf("%d eh o maior\n", mayor);
+	
+    return 0;
+}
