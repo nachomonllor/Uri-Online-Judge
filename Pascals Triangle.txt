@@ -1,0 +1,76 @@
+
+https://www.urionlinejudge.com.br/judge/es/problems/view/2232
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp205
+{
+    class Program
+    {
+
+
+
+        static void Main(string[] args)
+        {
+
+            int[,] tabla = new int[32,32];
+
+            for (int i = 0; i < 32; i++)
+            {
+                tabla[i, 0] = 1;
+                tabla[0, i] = 1;
+            }
+
+
+            for (int i = 1; i < 32; i++)
+            {
+                for (int j = 1; j < 32; j++)
+                {
+                    tabla[i, j] = tabla[i - 1, j] + tabla[i, j - 1];
+                }
+            }
+
+
+            int[] acum = new int[32];
+
+        
+            for (int fila = 0; fila < 32; fila++)
+            {
+           
+                int f = fila, c = 0;
+
+                while (f > 0 && c < 32)
+                {
+                    acum[fila] += tabla[f, c];
+                    f--;
+                    c++;
+                }
+
+            }
+
+
+            //for (int i = 0; i < n; i++)
+            //{
+            //    Console.WriteLine(i + " " + acum[i]);
+            //}
+
+
+            int n = int.Parse(Console.ReadLine().Trim());
+            for (int test =0; test < n; test++)
+            {
+                int x = int.Parse(Console.ReadLine().Trim());
+                Console.WriteLine(acum[x]);
+            }
+
+
+
+
+            Console.ReadLine();
+
+        }
+    }
+}
