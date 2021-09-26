@@ -1,0 +1,96 @@
+
+https://www.urionlinejudge.com.br/judge/es/runs/code/24615424
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp206
+{
+    class Program
+    {
+
+        static int Sum(string a, string b)
+        {
+
+            int max = Math.Max(a.Length, b.Length);
+
+            a = new string('0', max - a.Length) + a;
+            b = new string('0', max - b.Length) + b;
+
+       
+            int acarreos = 0;
+            int mellevo = 0;
+            int sum = 0;
+            for (int i = max - 1; i >= 0; i--)
+            {
+                sum = (a[i] - '0') + (b[i] - '0') + mellevo;
+                if (sum > 9)
+                {
+                    acarreos++;
+              
+                }
+
+                mellevo = (sum / 10) % 10;
+
+            }
+
+
+            return acarreos;
+
+        }
+
+
+        static void Main(string[] args)
+        {
+
+            ////Console.WriteLine( Sum("545", "10002"));
+            //Console.WriteLine(Sum("555", "555"));
+            //Console.WriteLine(Sum("123", "594"));
+
+            //string linea = "";
+
+            while (true) //(linea =Console.ReadLine().Trim() ) != "0 0")
+            {
+
+                string linea = Console.ReadLine().Trim();
+
+                if (linea == "0 0")
+                {
+                    break;
+                }
+
+                string[] input = linea.Split(' ');
+
+                int ans = Sum(input.First(), input.Last());
+
+                if (ans == 0)
+                {
+                    Console.WriteLine("No carry operation.");
+                }
+                else
+                {
+
+                    if (ans > 1)
+                    {
+                        Console.WriteLine("{0} carry operations.", ans);
+                    }
+                    else if (ans == 1)
+                    {
+                        Console.WriteLine("1 carry operation.");
+                    }
+
+                }
+
+            }
+
+           // Console.WriteLine();
+
+            Console.ReadLine();
+
+        }
+    }
+}
