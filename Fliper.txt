@@ -1,0 +1,37 @@
+https://www.beecrowd.com.br/judge/es/problems/view/2454
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp320
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] PR = Console.ReadLine().Trim().Split(' ');
+
+            int P = int.Parse(PR.First());
+            int R = int.Parse(PR.Last());
+
+            if(P == 1 && R == 1)
+            {
+                Console.WriteLine("A");
+            }
+            else if(P == 1 && R == 0)
+            {
+                Console.WriteLine("B");
+            }
+            else
+            {
+                Console.WriteLine("C");
+            }
+
+
+            Console.ReadLine();
+        }
+    }
+}
