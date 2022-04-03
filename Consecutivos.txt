@@ -1,0 +1,51 @@
+
+https://www.beecrowd.com.br/judge/es/problems/view/2415
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp321
+{
+    class Program
+    {
+
+        static int Consecutivos(long[] arr)
+        {
+            int max_len = 0;
+            int len_local = 1;
+
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if (arr[i] != arr[i - 1])
+                {
+                    max_len = Math.Max(max_len, len_local);
+                    len_local = 1;
+                }
+                else
+                {
+                    len_local++;
+                }
+            }
+
+            max_len = Math.Max(max_len, len_local);
+            return max_len;
+        }
+
+
+        static void Main(string[] args)
+        {
+            //long[] arr = Array.ConvertAll("1 1 1 20 20 20 20 3 3 3 3 3 3 3".Split(' '), e => long.Parse(e));
+            //Console.WriteLine(Consecutivos(arr));
+            //long[] arr = Array.ConvertAll("1 1 1 3 3".Split(' '), e => long.Parse(e));
+
+            int n = int.Parse(Console.ReadLine().Trim());
+            long[] arr = Array.ConvertAll(Console.ReadLine().Trim().Split(' '), e => long.Parse(e));
+            Console.WriteLine(Consecutivos(arr));
+
+            Console.ReadLine();
+        }
+    }
+}
